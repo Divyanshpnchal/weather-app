@@ -2,17 +2,29 @@
 import './App.css'
 import {SearchBar} from "./components/Searchbar"
 import CurrentWeather from './components/CurrentWeather'
+import { useWeatherdetails } from './weatherdetails'
 
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
 
-const client = new QueryClient(); 
 
 function App() {
+  const {error , isloading}  = useWeatherdetails();
+  if(error){
+    return (
+      <div className='h-screen w-screen bg-black text-amber-50'>
+        {error}
+      </div>
+    )
+  }
+
+  if(isloading){
+    return (
+      <div  className='h-screen w-screen bg-black text-amber-50  ' >
+        Loading .....
+      </div>
+    )
+  }
+
   return(
-    <QueryClientProvider client={client}>
       <div className=" h-screen w-screen bg-gray-900 flex" >
         <div className= " gap-3  flex flex-1 bg-gray-900 flex-col items-center justify-center" >
           <div className='text-amber-50  text-4xl mb-8  '>
@@ -31,7 +43,6 @@ function App() {
       </div>
 
 
-    </QueryClientProvider>
 
   )
 

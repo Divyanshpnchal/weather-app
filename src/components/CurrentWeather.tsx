@@ -1,26 +1,26 @@
 import { useWeatherdetails } from "../weatherdetails";
-
+import { Forecasting } from "./Forecast";
 
 function CurrentWeather(){
-    const { location, currenttemp, forcasting, condition ,setcurrenttemp  } = useWeatherdetails();   
+    const { location, currenttemp, forecasting, condition ,icons  } = useWeatherdetails();   
    
     return (
-    <div className="flex flex-col justify-between items-center bg-amber-300 h-[400px] w-[400px] py-4 rounded-4xl ">
-        <div className="bg-amber-600 w-full text-center py-2">
+    <div className="flex flex-col justify-between items-center bg-gray-400 h-[500px] w-[500px] py-4 rounded-4xl ">
+        <div className=" w-full text-center py-2">
             {location}
         </div>
-        <div className="flex justify-center items-center text-center w-full bg-red-400 ">
-            image
+        <div className="flex justify-center items-center text-center w-full">
+            <img src={icons} alt="" className="w-[150px] h-[150px]" />
 
         </div>
 
-        <div className="flex flex-col items-center bg-blue-50 w-full py-2 mt-30">
+        <div className="flex flex-col items-center w-full py-1 ">
             <div className="text-6xl">{currenttemp}</div>
             <div>{condition}</div>
         </div>
 
-        <div className="bg-violet-500 w-full flex justify-center items-center h-[100px] m-3">
-            forecasting
+        <div className=" w-full flex justify-center items-center h-25 m-3">
+            <Forecasting></Forecasting>
         </div>
     </div>  
     )
